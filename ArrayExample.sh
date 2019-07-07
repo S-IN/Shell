@@ -2,7 +2,8 @@
 
 #===========================================================================================# 
 # Le programme enregistre des notes en fonction du nom, calcule une moyenne et l'affiche
-# Si le note est negative, >20, != nombre, saisie de la touche q : fin du programme 
+# Si le note est negative, saisie de la touche q : fin du programme 
+# Exceptions :  >20, != nombre : fin du programme 
 #===========================================================================================#
 
 
@@ -13,6 +14,7 @@ moyenne=0
 note=0
 nom=""
 
+# Entrée de la note 
 read -p "Saisir le nom : " nom 
 
 until [ "$note" -lt "0" ] || [ "$note" -gt "20" ] 
@@ -48,6 +50,7 @@ do
     fi
 done
 
+# Sortie du programme si entrée 
 if [ "$note" -lt "0" ] || [ "$note" = q ] 
     then
     echo "Vous allez quitter le programme"
@@ -62,11 +65,14 @@ if [ "$i" = 0 ] || [ "$note" -gt "20" ]
         fi
     else let moyenne=$sommeNotes/$i
         echo "La moyenne des notes est : $moyenne ($i notes)"
-            for j in "${!tableau_asso[@]}"
+            #for j in "${tableau_asso[@]}"
+            #do
+            #echo "clé $j"
+            #echo "valeur ${tableau_asso[j]}"
+            #done
+            for j in "{tableau_asso[*]}"
             do
-
-            echo "clé $j"
-            echo "valeur ${tableau_asso[j]}"
+            echo "Key \"${nom}\" : Value : "${tableau_asso[${note}]} 
             done
-            
+
 fi
